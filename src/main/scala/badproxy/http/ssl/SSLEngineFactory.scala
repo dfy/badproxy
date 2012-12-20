@@ -15,7 +15,7 @@
  */
 package badproxy.http.ssl
 
-import io.netty.example.securechat.SecureChatSslContextFactory
+import org.jboss.netty.example.securechat.SecureChatSslContextFactory
 
 import javax.net.ssl.SSLEngine
 

@@ -17,8 +17,8 @@ package badproxy.http.handler
 
 import java.net.{ URI, InetSocketAddress }
 
-import io.netty.channel.{ ChannelHandlerContext, ChannelFuture }
-import io.netty.handler.codec.http.HttpRequest
+import org.jboss.netty.channel.{ ChannelHandlerContext, ChannelFuture }
+import org.jboss.netty.handler.codec.http.HttpRequest
 
 import badproxy.config.ProxyConfig
 import badproxy.controller.RecorderController

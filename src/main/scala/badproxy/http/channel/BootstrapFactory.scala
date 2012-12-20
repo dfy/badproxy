@@ -15,12 +15,12 @@
  */
 package badproxy.http.channel
 
-import io.netty.bootstrap.{ ServerBootstrap, ClientBootstrap }
-import io.netty.channel.{ ChannelPipelineFactory, ChannelPipeline, ChannelHandlerContext }
-import io.netty.channel.Channels.pipeline
-import io.netty.channel.socket.nio.{ NioServerSocketChannelFactory, NioClientSocketChannelFactory }
-import io.netty.handler.codec.http.{ HttpResponseEncoder, HttpRequestDecoder, HttpRequest, HttpContentDecompressor, HttpContentCompressor, HttpClientCodec, HttpChunkAggregator }
-import io.netty.handler.ssl.SslHandler
+import org.jboss.netty.bootstrap.{ ServerBootstrap, ClientBootstrap }
+import org.jboss.netty.channel.{ ChannelPipelineFactory, ChannelPipeline, ChannelHandlerContext }
+import org.jboss.netty.channel.Channels.pipeline
+import org.jboss.netty.channel.socket.nio.{ NioServerSocketChannelFactory, NioClientSocketChannelFactory }
+import org.jboss.netty.handler.codec.http.{ HttpResponseEncoder, HttpRequestDecoder, HttpRequest, HttpContentDecompressor, HttpContentCompressor, HttpClientCodec, HttpChunkAggregator }
+import org.jboss.netty.handler.ssl.SslHandler
 
 import badproxy.config.ProxyConfig
 import badproxy.controller.RecorderController

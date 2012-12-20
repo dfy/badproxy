@@ -17,7 +17,7 @@ package badproxy.http
 
 import java.net.InetSocketAddress
 
-import io.netty.channel.group.DefaultChannelGroup
+import org.jboss.netty.channel.group.DefaultChannelGroup
 
 import badproxy.config.ProxyConfig
 import badproxy.controller.RecorderController

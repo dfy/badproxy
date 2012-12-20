@@ -15,8 +15,8 @@
  */
 package badproxy.http.handler
 
-import io.netty.channel.{ ChannelFutureListener, ChannelHandlerContext, MessageEvent, SimpleChannelHandler }
-import io.netty.handler.codec.http.{ HttpRequest, HttpResponse }
+import org.jboss.netty.channel.{ ChannelFutureListener, ChannelHandlerContext, MessageEvent, SimpleChannelHandler }
+import org.jboss.netty.handler.codec.http.{ HttpRequest, HttpResponse }
 
 import badproxy.controller.RecorderController
 

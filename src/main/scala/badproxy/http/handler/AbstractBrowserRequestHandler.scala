@@ -19,10 +19,10 @@ import java.net.URI
 
 import scala.collection.JavaConversions.asScalaBuffer
 
-import io.netty.channel.{ ChannelFuture, ChannelFutureListener, ChannelHandlerContext, ExceptionEvent, MessageEvent, SimpleChannelHandler }
-import io.netty.handler.codec.http.{ DefaultHttpRequest, HttpRequest }
+import org.jboss.netty.channel.{ ChannelFuture, ChannelFutureListener, ChannelHandlerContext, ExceptionEvent, MessageEvent, SimpleChannelHandler }
+import org.jboss.netty.handler.codec.http.{ DefaultHttpRequest, HttpRequest }
 
-import com.excilys.ebi.gatling.http.Headers
+import badproxy.http.Headers
 import badproxy.config.ProxyConfig
 import badproxy.controller.RecorderController
 import com.ning.http.util.Base64

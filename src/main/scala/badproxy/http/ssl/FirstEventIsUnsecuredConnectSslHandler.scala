@@ -17,8 +17,8 @@ package badproxy.http.ssl
 
 import java.util.concurrent.atomic.AtomicBoolean
 
-import io.netty.channel.{ ChannelHandlerContext, ChannelEvent }
-import io.netty.handler.ssl.SslHandler
+import org.jboss.netty.channel.{ ChannelHandlerContext, ChannelEvent }
+import org.jboss.netty.handler.ssl.SslHandler
 
 import javax.net.ssl.SSLEngine
 
