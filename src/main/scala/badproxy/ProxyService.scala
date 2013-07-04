@@ -9,6 +9,7 @@ import spray.can.Http
 import spray.can.server.Stats
 import spray.util._
 import spray.http._
+import spray.http.HttpHeaders._
 import HttpMethods._
 import MediaTypes._
 
@@ -26,17 +27,42 @@ class ProxyService extends Actor with SprayActorLogging {
     case HttpRequest(GET, Uri.Path("/"), _, _, _) =>
       sender ! index
 
-    case HttpRequest(GET, Uri.Path("/proxied"), _, _, _) =>
-      val client = sender
-      //log.info(header[Host])
+    case req: HttpRequest =>
+      
+      /*req.header[Host] match {
+        case None                   ⇒ log.info("Request has a relative URI and is missing a `Host` header")
+        case Some(Host("", _))      ⇒ log.info("Request has a relative URI and an empty `Host` header")
+        case Some(Host(host, port)) ⇒ log.info("Request has host " + host + " and port " + port + " with path " + req.uri)
+      }*/
 
-      IO(Http).ask(HttpRequest(GET, Uri("http://localhost/~sduffey/"))).mapTo[HttpResponse] onSuccess {
+      val newRequest = updateRequestHostAndPort(req, "localhost", 80)
+      //log.info("About to ask IO(Http) to make a request")
+      //log.info(newRequest.toString)
+
+      val client = sender
+      IO(Http).ask(newRequest).mapTo[HttpResponse] onSuccess {
         case resp: HttpResponse => 
+          //log.info("Got the HttpResponse...")
           //log.info(resp.toString)
           client ! resp
         case _ => 
           sys.error("BOOM!")
       }
+  }
+
+  def updateRequestHostAndPort(req: HttpRequest, host: String, port: Int): HttpRequest = {
+    val newAuth = req.uri.authority.copy(host = new Uri.NamedHost(host), port = port)
+    val newUri = req.uri.copy(authority = newAuth)
+
+    val hostWithIndex = req.headers.zipWithIndex.find(_._1.isInstanceOf[Host])
+    val newHeaders = hostWithIndex match {
+      case Some((_, index: Int)) => 
+        req.headers.updated(index, Host(host, port))
+      case _ => 
+        req.headers
+    }
+
+    req.copy(uri = newUri, headers = newHeaders)
   }
 
   ////////////// helpers //////////////
